@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8"/>
+   <style>
+   
+   </style>
+   <title>IT 2320 - Lab 2</title>
+   <pre>
+   <script>
+      "use strict";
+	 
+	  // set up an array and initialize the first two values
+	  var fibArray = [];
+	  fibArray[0] = 0;
+	  fibArray[1] = 1;
+	  
+	  // declare a variable for the size of the squence and prompt for it
+	  var fibNum = prompt("How many numbers would you like in the sequence?");
+
+	  // check that fibNum >= 3
+	  if(fibNum <= 2) {
+		prompt("Error");
+	  }
+	  // write the values into the array
+	  // You start at 2 because the first two values are already there
+	  var i;
+	  for (var i = 2; i < fibNum; i++) {
+	     fibArray[i] = fibArray[i - 2] + fibArray[i - 1]; 
+	  }
+	  
+	  // read from array and print to screen
+	  // another for loop 
+	  for (var i = 0; i < fibArray.length; i++) {
+		document.write(" " + fibArray[i] + " ");
+	  }
+	  // calculate golden ratio and display it
+	  //  last number / 2nd last number
+	  var num1 = fibArray[fibArray.length - 2];
+	  var num2 = fibArray.slice(-1);
+	  document.writeln();
+	  document.write("The Golden Ratio is: " + num2/num1);
+	  
+	  
+   </script>
+   </pre>
+</head>
+<body>
+   <h2>Matt Brown - IT 2320 - Lab 2</h2>
+</body>
+
+</html>
