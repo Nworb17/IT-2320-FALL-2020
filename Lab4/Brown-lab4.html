@@ -1,0 +1,263 @@
+<html>
+<head>
+	<title>Lab 4 - Form Validation</title>
+	<style>
+		.blacktext { color: black; }
+		.redtext { color: red; }
+	</style>
+	<script>
+	"use strict";
+	function mstatusChange() {
+		var e = document.getElementById("mstatus");
+		var mstatus = e.options[e.selectedIndex].value;
+		if (mstatus == '2') {
+			document.getElementById('sname').disabled = false;
+		} else {
+			document.getElementById('sname').disabled = true;
+		}
+	}
+	
+	function processForm() {
+		event.preventDefault();
+		var lname = document.getElementById ('lname').value;
+		var fname = document.getElementById ('fname').value;
+		var address1 = document.getElementById ('address1').value;
+		var address2 = document.getElementById ('address2').value;
+		var city = document.getElementById ('city').value;
+		var state = document.getElementById ('state').value;
+		var zipcode = document.getElementById ('zipcode').value;
+		var gender = document.getElementsByName ('gender').value;
+		var dob = document.getElementById ('dob').value;
+		var mstatus = document.getElementById ('mstatus').value;
+		var sname = document.getElementById ('sname').value;
+		var email = document.getElementById ('email').value;
+		var phone = document.getElementById ('phone').value;
+		var password = document.getElementById ('password').value;
+		var password2 = document.getElementById ('password2').value;
+
+		var formGood = true;
+		
+		if (lname == "") {
+			formGood = false;
+			document.getElementById ('lnameLabel').className = 'redtext';
+		} else {
+			document.getElementById ('lnameLabel').className = 'blacktext';
+		}
+		if (fname == "") {
+			formGood = false;
+			document.getElementById ('fnameLabel').className = 'redtext';
+		} else {
+			document.getElementById ('fnameLabel').className = 'blacktext';
+		}
+		if (address1 == "") {
+			formGood = false;
+			document.getElementById ('address1Label').className = 'redtext';
+		} else {
+			document.getElementById ('address1Label').className = 'blacktext';
+		}
+		if (address2 == "") {
+			formGood = false;
+			document.getElementById ('address2Label').className = 'redtext';
+		} else {
+			document.getElementById ('address2Label').className = 'blacktext';
+		}
+		if (city == "") {
+			formGood = false;
+			document.getElementById ('cityLabel').className = 'redtext';
+		} else {
+			document.getElementById ('cityLabel').className = 'blacktext';
+		}
+		if (state == "") {
+			formGood = false;
+			document.getElementById ('stateLabel').className = 'redtext';
+		} else {
+			document.getElementById ('stateLabel').className = 'blacktext';
+		}
+		if (zipcode == "") {
+			formGood = false;
+			document.getElementById ('zipcodeLabel').className = 'redtext';
+		} else {
+			document.getElementById ('zipcodeLabel').className = 'blacktext';
+		}
+		if (gender == "") {
+			formGood = false;
+			document.getElementById ('genderLabel').className = 'redtext';
+		} else {
+			document.getElementById ('genderLabel').className = 'blacktext';
+		}
+		if (dob == "") {
+			formGood = false;
+			document.getElementById ('dobLabel').className = 'redtext';
+		} else {
+			document.getElementById ('dobLabel').className = 'blacktext';
+		}
+		if (mstatus == "") {
+			formGood = false;
+			document.getElementById ('mstatusLabel').className = 'redtext';
+		} else {
+			document.getElementById ('mstatusLabel').className = 'blacktext';
+		}
+		if (sname == "") {
+			formGood = false;
+			document.getElementById ('snameLabel').className = 'redtext';
+		} else {
+			document.getElementById ('snameLabel').className = 'blacktext';
+		}
+		if (email == "") {
+			formGood = false;
+			document.getElementById ('emailLabel').className = 'redtext';
+		} else {
+			document.getElementById ('emailLabel').className = 'blacktext';
+		}
+		if (phone == "") {
+			formGood = false;
+			document.getElementById ('phoneLabel').className = 'redtext';
+		} else {
+			document.getElementById ('phoneLabel').className = 'blacktext';
+		}
+		if (password == "") {
+			formGood = false;
+			document.getElementById ('passwordLabel').className = 'redtext';
+		} else {
+			document.getElementById ('passwordLabel').className = 'blacktext';
+		}
+		if (password2 == "") {
+			formGood = false;
+			document.getElementById ('password2Label').className = 'redtext';
+		} else {
+			document.getElementById ('password2Label').className = 'blacktext';
+		}
+		
+		if (password != password2) {
+			formGood = false;
+			document.getElementById ('passwordLabel').className = 'redtext';
+			document.getElementById ('password2Label').className = 'redtext';
+		} else {
+			document.getElementById ('passwordLabel').className = 'blacktext';
+			document.getElementById ('password2Label').className = 'blacktext';
+		}
+
+		if (formGood == true) {
+			document.getElementById ('myForm').submit();
+		} else {
+			document.getElementById ('errorMsg').innerHTML = "Please fix the errors below";
+		}
+	}
+
+	window.onload = function(){
+		document.getElementById('fname').focus();
+		document.getElementById('mstatus').onchange = mstatusChange;
+		document.getElementById ('submit').onclick = processForm;
+	};
+	</script>
+</head>
+<body>
+	<main>
+		<h2>Matt Brown - IT 2320 - Lab 4</h2>
+		<h2><span id="errorMsg" name="errorMesg" class="redtext"></span></h2>
+		<form action="http://www.waynedog.net/formreader.php" method="post" id="myForm">
+		<table style="width:50%">
+			<tr>
+				<td><label id="fnameLabel" class="blacktext">First name:</label><input type="text" id="fname" name="fname"></td>
+				<td><label id="lnameLabel" class="blacktext">Last name:</label><input type="text" id="lname" name="lname"></td>
+			</tr>
+			<tr>
+				<td><label id="address1Label" class="blacktext">Address:</label><input type="text" id="address1" name="address1"></td>
+				<td><label id="address2Label" class="blacktext">Suite or Apt:</label><input type="text" id="address2" name="address2"></td>
+			</tr>
+			<tr>
+				<td><label id="cityLabel" class="blacktext">City:</label><input type="text" id="city" name="city"></td>
+				<td><label id="stateLabel" class="blacktext">State:</label><select id="state" name="state">
+					<option value="AL">Alabama</option>
+					<option value="AK">Alaska</option>
+					<option value="AZ">Arizona</option>
+					<option value="AR">Arkansas</option>
+					<option value="CA">California</option>
+					<option value="CO">Colorado</option>
+					<option value="CT">Connecticut</option>
+					<option value="DE">Delaware</option>
+					<option value="DC">Dist of Columbia</option>
+					<option value="FL">Florida</option>
+					<option value="GA">Georgia</option>
+					<option value="HI">Hawaii</option>
+					<option value="ID">Idaho</option>
+					<option value="IL">Illinois</option>
+					<option value="IN">Indiana</option>
+					<option value="IA">Iowa</option>
+					<option value="KS">Kansas</option>
+					<option value="KY">Kentucky</option>
+					<option value="LA">Louisiana</option>
+					<option value="ME">Maine</option>
+					<option value="MD">Maryland</option>
+					<option value="MA">Massachusetts</option>
+					<option value="MI">Michigan</option>
+					<option value="MN">Minnesota</option>
+					<option value="MS">Mississippi</option>
+					<option value="MO">Missouri</option>
+					<option value="MT">Montana</option>
+					<option value="NE">Nebraska</option>
+					<option value="NV">Nevada</option>
+					<option value="NH">New Hampshire</option>
+					<option value="NJ">New Jersey</option>
+					<option value="NM">New Mexico</option>
+					<option value="NY">New York</option>
+					<option value="NC">North Carolina</option>
+					<option value="ND">North Dakota</option>
+					<option value="OH">Ohio</option>
+					<option value="OK">Oklahoma</option>
+					<option value="OR">Oregon</option>
+					<option value="PA">Pennsylvania</option>
+					<option value="RI">Rhode Island</option>
+					<option value="SC">South Carolina</option>
+					<option value="SD">South Dakota</option>
+					<option value="TN">Tennessee</option>
+					<option value="TX">Texas</option>
+					<option value="UT">Utah</option>
+					<option value="VT">Vermont</option>
+					<option value="VA">Virginia</option>
+					<option value="WA">Washington</option>
+					<option value="WV">West Virginia</option>
+					<option value="WI">Wisconsin</option>
+					<option value="WY">Wyoming</option>
+					</select></td>
+			</tr>
+			<tr>
+				<td><label id="zipcodeLabel" class="blacktext">ZIP Code:</label><input type="text" id="zipcode" name="zipcode"></td>
+			</tr>
+			<tr>
+				<td><label id="genderLabel" class="blacktext">Choose your gender</label></td>
+			</tr>
+			<tr>
+				<td><label id="maleLabel" class="blacktext" for="male">Male</label><input type="radio" id="male" name="gender" value="male"></td>
+			</tr>
+			<tr>
+				<td><label id="femaleLabel" class="blacktext" for="female">Female</label><input type="radio" id="female" name="gender" value="female"></td>
+			</tr>
+			<tr>
+				<td><label id="otherLabel" class="blacktext" for="other">Other</label><input type="radio" id="other" name="gender" value="other"></td>
+				<td><label id="dobLabel" class="blacktext">Date Of Birth:</label><input type="date" id="dob" name="dob"></td>
+			</tr>
+			<tr>
+				<td><label id="mstatusLabel" class="blacktext">Marital Status</label>
+				<select id="mstatus" name="mstatus">
+					<option value="1">Single</option>
+					<option value="2">Married</option>
+				</select></td>
+				<td><label id="snameLabel" class="blacktext">Spouse Name:</label><input type="text" id="sname" name="sname" disabled></td>
+			</tr>
+			<tr>
+				<td><label id="emailLabel" class="blacktext">Email:</label><input type="email" id="email" name="email"></td>
+				<td><label id="phoneLabel" class="blacktext">Phone Number:</label><input type="text" id="phone" name="phone"></td>
+			</tr>
+			<tr>
+				<td><label id="passwordLabel" class="blacktext">Password:</label><input type="password" id="password" name="password"></td>
+				<td><label id="password2Label" class="blacktext">Confirm Password:</label><input type="password" id="password2" name="password2"></td>
+			</tr>
+			<tr>
+				<td><input type="reset" name="reset" id="reset" value="RESET">
+				<td><input type="submit" name="submit" id="submit" value="SUBMIT">
+			</tr>
+			</form>
+	</main>
+</body>
+</html>
