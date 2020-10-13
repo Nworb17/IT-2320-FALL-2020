@@ -1,0 +1,78 @@
+<html>
+<head>
+<style>
+.slide {display:none;}
+</style>
+</head>
+<body>
+	<h2>Matt Brown - IT 2320 - Lab 5</h2>
+	<p><center>
+		Timer (seconds): <input type="text" id="timerVal" value="5"><br/><br/>
+		<div id="slide-container">
+			<img class="slide" src="" id="img1placeholder">
+			<img class="slide" src="" id="img2placeholder">
+			<img class="slide" src="" id="img3placeholder">
+			<img class="slide" src="" id="img4placeholder">
+			<img class="slide" src="" id="img5placeholder">
+		</div>
+		<h2 id="timerCount">5</h2>
+	</center></p>
+	<script>
+	window.addEventListener("load", begin, true);
+	var changeTimer = setInterval(slideshow, 5000);
+	var slideshowTimer = setInterval(onScreenTimer, 1000);
+	var index = 0;
+	var timeleft = document.getElementById("timerVal").value;
+	function begin() {
+		slideshow();
+		preLoad();
+	}
+	function slideshow() {
+		var i;
+		var x = document.getElementsByClassName("slide");
+		for (i = 0; i < x.length; i ++) {
+		x[i].style.display = "none";
+		}
+		index++;
+		if (index > x.length) {index = 1}
+		x[index-1].style.display = "block";
+	}
+	document.getElementById("timerVal").onchange = function() {ssFunction()};
+	function stopFunction() {
+		var timerVal = document.getElementById("timerVal").value;
+		clearInterval(changeTimer);
+		changeTimer = setInterval(slideshow, timerVal * 1000);
+	}
+	function onScreenTimer() {
+		timeleft -= 1;
+		document.getElementById("timerCount").innerHTML = timeleft;
+		if (timeleft == 0) {
+			timeleft = document.getElementById("timerVal").value;
+		}
+	}
+	function preLoad() {
+		if (document.images) {
+			img1 = new Image();
+			img1.src = "images/adams.jpg";
+			document.getElementById("img1placeholder").src = "images/adams.jpg";
+			img2 = new Image();
+			img2.src = "images/jackson.jpg";
+			document.getElementById("img2placeholder").src = "images/jackson.jpg";
+			img3 = new Image();
+			img3.src = "images/jefferson.jpg";
+			document.getElementById("img3placeholder").src = "images/jefferson.jpg";
+			img4 = new Image();
+			img4.src = "images/madison.jpg";
+			document.getElementById("img4placeholder").src = "images/madison.jpg";
+			img5 = new Image();
+			img5.src = "images/washington.jpg";
+			document.getElementById("img5placeholder").src = "images/washington.jpg";
+		}
+	}
+	function ssFunction() {
+		stopFunction();
+		onScreenTimer();
+	}
+	</script>
+</body>
+</html>
