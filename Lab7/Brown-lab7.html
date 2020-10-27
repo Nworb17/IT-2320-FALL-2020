@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>Lab 7 - Walking Guy</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+		.center {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 200px;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$('#sButton').on("click", function(){
+			$('#gWalking').animate(function(){
+				$('.front').removeClass('front').addClass('back');
+			});
+				$('#gWalking').fadeIn(1000);
+				$('#gWalking').animate({
+					left: $(window).width() - 400
+				}, 3000);
+				$('#gWalking').animate({
+					left: '0px'
+				}, 3000);
+				$('#gWalking').fadeOut(1000);
+			});
+		});
+	</script>
+</head>
+<body>
+	<h2>Matt Brown - IT 2320 - Lab 7 Walking Guy</h2>
+	<div class="center">
+		<button id="sButton">Start</button>
+	</div>
+	<div id="img">
+		<div class="front">
+		<img src="guy-walking.gif" id="gWalking" style="width:400px; height:300px; position:absolute; display:none;">
+		</div>
+		<div class="back">
+		<img src="guy-walking-reverse.gif" id="gWalking" style="width:400px; height:300px; position:absolute; display:none;">
+		</div>
+	</div>
+</body>
+</html>
