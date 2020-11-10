@@ -1,0 +1,66 @@
+<html>
+<head>
+	<title>Lab 9 - Weather API</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("button").click(function(){
+				var zipCode = $("#searchZip").val();
+				$.ajax({
+					method: "GET",
+					url: "https://api.openweathermap.org/data/2.5/weather?zip="+zipCode+",us&appid=8f1109f6f97e43c44a2ec57ec9212c1e&units=imperial",
+					dataType: "json"
+				}).done(function(response){
+					$('#cityName').html(response.name);
+					$('#cCondition').html(response.weather.main);
+					$('#temp').html((response.main.temp).toFixed(0));
+					$('#wSpeed').html((response.wind.speed).toFixed(0));
+					$('#wDirection').html(response.wind.deg);
+					$('#humidity').html(response.main.humidity);
+					$('#minTemp').html((response.main.temp_min).toFixed(0));
+					$('#maxTemp').html((response.main.temp_max).toFixed(0));
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<h2>Matt Brown - IT 2320 - Lab 9 Weather API</h2>
+	<input type="text" id="searchZip">
+	<button id="sButton">Search</button>
+	<table>
+		<tr>
+			<td>City</td>
+			<td id="cityName"></td>
+		</tr>
+		<tr>
+			<td>Current Condition</td>
+			<td id="cCondition"></td>
+		</tr>
+		<tr>
+			<td>Temperature</td>
+			<td id="temp"></td>
+		</tr>
+		<tr>
+			<td>Wind Speed</td>
+			<td id="wSpeed"></td>
+		</tr>
+		<tr>
+			<td>Wind Direction</td>
+			<td id="wDirection"></td>
+		</tr>
+		<tr>
+			<td>Humidity</td>
+			<td id="humidity"></td>
+		</tr>
+		<tr>
+			<td>Min Temperature</td>
+			<td id="minTemp"></td>
+		</tr>
+		<tr>
+			<td>Max Temperature</td>
+			<td id="maxTemp"></td>
+		</tr>
+	</table>
+</body>
+</html>
