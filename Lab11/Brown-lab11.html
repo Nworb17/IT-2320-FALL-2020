@@ -1,0 +1,40 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var stringArray = [];
+			$('#btnsubmit').on("click", function(){
+				stringArray.push($('#dataEntered').val());
+				$('#results').text(stringArray);
+				console.log(stringArray);
+			});
+			$('#btnsearch').on("click", function() {
+				var arraySearch = stringArray.find(el => el.includes($('#dataSearch').val()));
+				var searchIndex = stringArray.indexOf(arraySearch);
+				$('#results').text(searchIndex + arraySearch);
+			});
+			$('#sort').on("click", function(){
+				stringArray.sort();
+				$('#results').text(stringArray);
+			});
+			$('#reverse').on("click", function(){
+				stringArray.reverse();
+				$('#results').text(stringArray);
+			});
+		});
+	</script>
+</head>
+<body>
+<h2>Matt Brown - IT 2320 - Lab 11</h2>
+Enter a string: <input type="text" id="dataEntered">
+<button type="button" id="btnsubmit">Submit</button>
+<br /><br />
+Search for this: <input type="text" id="dataSearch">
+<button type="button" id="btnsearch">Search</button>
+<br /><br />
+<button type="button" id="sort">Sort the Array</button> <button type="button" id="reverse">Reverse the Array</button> 
+<br /><br />
+<strong>My Array Output</strong><br/>
+<span id="results"> *** </span>
+</body></html>
